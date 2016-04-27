@@ -1,0 +1,225 @@
+.circular {
+	width: 300px;
+	height: 300px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url(../images/profile.gif) no-repeat;
+	}
+
+	.green_c{
+		color:#27AF60;
+	}
+
+	.red_c{
+		color: #c0392b;
+	}
+
+#zoom{
+	z-index: 9999 !important;
+	position: relative;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+[contenteditable]:focus{
+border:none;
+outline:none;
+}
+
+#circle{
+	color: red;
+}
+
+
+/* Wizard */
+.mywizard > li.active .badge {
+	background-color: #47a447;
+}
+
+.mywizard > li.active a,
+.mywizard > li.active a:hover,
+.mywizard > li.active a:focus {
+	border-top-color: #47a447;
+}
+
+
+html .wizard-progress .mystep .progress-indicator,
+html.dark .wizard-progress .mystep .progress-indicator {
+	background: #47a447;
+}
+
+html .wizard-progress .mywizard li.completed a span,
+html.dark .wizard-progress .mywizard li.completed a span {
+	border-color: #47a447;
+	background: #47a447;
+}
+
+html .wizard-progress .mywizard li.active a span,
+html.dark .wizard-progress .mywizard li.active a span {
+	color: #47a447;
+	border-color: #47a447;
+}
+
+
+.form-control:focus {
+	border-color: #47a447;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 136, 204, 0.3);
+}
+
+.body-mysign {
+	background: url(../images/patterns/denim.png) repeat;
+	max-width: none;
+	min-height: 400px;
+}
+
+/* Page Header */
+.page-header h2 {
+	border-bottom-color: #47a447;
+}
+
+.page-header .sidebar-right-toggle:hover {
+	color: #47a447;
+}
+
+/* Sidebar Left */
+.sidebar-left .sidebar-header .sidebar-toggle:hover i {
+	color: #47a447;
+}
+
+@media only screen and (min-width: 768px) {
+	html.sidebar-left-collapsed.scroll .sidebar-left .nav-main li.nav-active a:hover,
+	html.sidebar-left-collapsed.boxed .sidebar-left .nav-main li.nav-active a:hover {
+		color: #47a447;
+	}
+
+	html.sidebar-left-collapsed.scroll .sidebar-left .nav-main > li:hover > a span.label,
+	html.sidebar-left-collapsed.boxed .sidebar-left .nav-main > li:hover > a span.label {
+		background-color: #47a447;
+	}
+}
+
+/* Nano Scroller Plugin */
+html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
+	background: #47a447;
+}
+
+.myicon {
+	margin: 0 auto;
+	font-size: 21px;
+	font-size: 2.1rem;
+	width: 45px;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	color: #fff;
+	background-color: rgba(0, 0, 0, 0.1);
+	-webkit-border-radius: 22.5px;
+	border-radius: 22.5px;
+}
+
+.myicon.bg-success {
+	background: #47a447;
+	color: white;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+#flash{
+	position: absolute;
+	margin-top: 5px;
+}
+
+
+.myimages {
+	border-color: #01947A;
+	background-color: #01947A;
+}
+
+.body-sign .myborders .panel-body {
+	border-top-color: #01947A;
+}
+
+#s {
+	border-color: #01947A;
+	background-color: #01947A;
+}
+
+#parent{
+	width:434px;
+	overflow:hidden;
+}
+
+#mailcontent{
+	border: none;
+	background-color: none;
+	background: none;
+	overflow-x: hidden;
+	resize:none;
+	text-align:left;
+	width:450px;
+  overflow-x:hidden;
+  overflow-y:scroll;
+}
+
+#mailcontent:focus {
+    outline-width: 0;
+}
+
+@media (max-width: 767px) {
+	#parent{
+		width:284px;
+		overflow:hidden;
+	}
+	#mailcontent{
+		border: none;
+		background-color: none;
+		background: none;
+		overflow-x: hidden;
+		resize:none;
+		text-align:left;
+		width:300px;
+	  overflow-x:hidden;
+	  overflow-y:scroll;
+	}
+	#out{
+		width:284px;
+	}
+}
+
+.fileuploader {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileuploader input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+[ng\: cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x- ng-cloak {
+      display: none !important;
+    }

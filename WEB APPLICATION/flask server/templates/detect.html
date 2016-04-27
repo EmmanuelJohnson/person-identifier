@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Face Detector</title>
+    <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.css" />
+    		<!-- Theme CSS -->
+    		<link rel="stylesheet" href="../static/stylesheets/theme.css" />
+
+    		<!-- Skin CSS -->
+    		<link rel="stylesheet" href="../static/stylesheets/skins/default.css" />
+
+    		<!-- Theme Custom CSS -->
+    		<link rel="stylesheet" href="../static/stylesheets/theme-custom.css">
+        <style>
+        img{
+          border: 5px black;
+          border-style: solid;
+        }
+        </style>
+  </head>
+  <body>
+    <div class="body-sign body-locked">
+    <h3 class="text text-center">Face Detection</h3>
+    <div class="row"><center>
+    <img id="bg" src="{{ url_for('facedetect') }}"></center>
+  </div>
+  </div>
+  </body>
+</html>

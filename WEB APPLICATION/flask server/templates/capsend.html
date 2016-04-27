@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="stuff, to, help, search, engines, not" name="keywords">
+<meta content="What this page is about." name="description">
+<meta content="Display Webcam Stream" name="title">
+<title>Display Webcam Stream</title>
+<link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.css" />
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="../static/stylesheets/theme.css" />
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="../static/stylesheets/skins/default.css" />
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="../static/stylesheets/theme-custom.css">
+    <!-- Head Libs -->
+    <script src="../static/vendor/modernizr/modernizr.js"></script>  
+<style>
+video{
+  border: 5px black;
+  border-style: solid;
+}
+canvas{
+  border: 5px black;
+  border-style: solid;
+  width: 620px;
+  height: 490px;
+}
+</style>
+</head>
+  
+<body>
+<div id="container" class="body-sign body-locked">
+  <div class="row">
+    <h3 class="text text-center">Capture Facial Images</h3>
+  </div>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="row">
+          <div class="alert alert-primary">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong>NOTIFICATION!</strong>
+
+            {% for message in messages %}
+                <p>{{ message }} </p>
+            {% endfor %}
+          </div>
+      </div>
+    {% endif %}
+  {% endwith %}
+  <div class="row">
+    <button onclick="cap()" class="btn btn-primary col-md-offset-3">Capture Image</button>
+    <button onclick="send()" class="btn btn-primary col-md-offset-5">Post Image</button>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-lg-6 col-xl-6">
+    <video autoplay="true" id="myVideo"></video>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xl-6">
+    <canvas id="myCanvas"></canvas>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script>
+navigator.getUserMedia  = navigator.getUserMedia ||
+                          navigator.webkitGetUserMedia ||
+                          navigator.mozGetUserMedia ||
+                          navigator.msGetUserMedia;
+window.URL = window.URL || window.mozURL || window.webkitURL;
+navigator.getUserMedia({video:true},function(stream){
+
+var video = document.getElementById('myVideo');
+video.src = window.URL.createObjectURL(stream);
+
+
+
+
+}, videoError);
+function videoError(e) {
+    // do something
+}
+function cap() {
+  var video = document.getElementById('myVideo');
+  var canvas = document.getElementById('myCanvas');
+  setTimeout(function(){
+    var width1 = video.videoWidth;
+    var height1 = video.videoHeight;
+    canvas.width = width1;
+    canvas.height = height1;
+    canvas.getContext('2d').drawImage(video,0,0,canvas.width, canvas.height);
+  },50);
+
+}
+
+function send() {
+  var video = document.getElementById('myVideo');
+  var canvas = document.getElementById('myCanvas');
+  var imgData = canvas.toDataURL('image/png');
+  imgData = imgData.replace('data:image/png;base64,','');
+  var img = JSON.stringify({imageData:imgData});
+  $.ajax({
+    url:'/capimg',
+    type:"POST",
+    data: img,
+    contentType:"application/json"
+  });
+
+}
+</script>
+<!-- Vendor -->
+<script src="../static/vendor/jquery/jquery.js"></script>
+<script src="../static/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+<script src="../static/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../static/vendor/nanoscroller/nanoscroller.js"></script>
+<script src="../static/vendor/magnific-popup/magnific-popup.js"></script>
+<script src="../static/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+<!-- Specific Page Vendor -->
+<script src="../static/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
+<script src="../static/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
+<script src="../static/vendor/jquery-appear/jquery.appear.js"></script>
+<script src="../static/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<!-- Theme Base, Components and Settings -->
+<script src="../static/javascripts/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="../static/javascripts/theme.custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="../static/javascripts/theme.init.js"></script>
+</body>
+</html>

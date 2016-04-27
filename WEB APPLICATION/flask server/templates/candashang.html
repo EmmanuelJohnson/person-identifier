@@ -1,0 +1,319 @@
+<!doctype html>
+<html class="fixed">
+	<head>
+		<!-- Basic -->
+		<meta charset="UTF-8">
+		<title>Dashboard</title>
+		<meta name="keywords" content="Memory Regainer" />
+		<meta name="description" content="Regain memory about a person for memory loss patients">
+		<meta name="author" content="bobby">
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<!-- Web Fonts  -->
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+		<!-- Vendor CSS -->
+
+		<link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="../static/vendor/font-awesome/css/font-awesome.css" />
+		<link rel="stylesheet" href="../static/vendor/magnific-popup/magnific-popup.css" />
+
+		<!-- Specific Page Vendor CSS -->
+		<link rel="stylesheet" href="../static/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
+		<link rel="stylesheet" href="../static/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="../static/stylesheets/theme.css" />
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="../static/stylesheets/skins/default.css" />
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="../static/stylesheets/theme-custom.css">
+		<link rel="stylesheet" href="../static/stylesheets/xeditable.css">
+
+		<!-- Head Libs -->
+		<script src="../static/vendor/modernizr/modernizr.js"></script>
+		<style>
+		#mymenbutt{
+			background:none;
+	 border:none;
+	 box-shadow:none;
+		}
+		</style>
+
+	</head>
+	<body>
+		<section class="body">
+
+			<!-- start: header -->
+			<header class="header">
+				<div class="logo-container">
+					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+					</div>
+				</div>
+
+				<!-- start: search & user box -->
+				<div class="header-right"
+					<span class="separator"></span>
+
+					<div id="userbox" class="userbox">
+						<a href="#" data-toggle="dropdown">
+							<figure class="profile-picture">
+								<img src="{{image}}" alt="Joseph Doe" class="img-circle" data-lock-picture="../static/images/!logged-user.jpg" />
+							</figure>
+							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+								<span class="name">{{name}}</span>
+							</div>
+
+							<i class="fa custom-caret"></i>
+						</a>
+
+						<div class="dropdown-menu">
+							<ul class="list-unstyled">
+								<li class="divider"></li>
+								<li>
+									<a role="menuitem" tabindex="-1" href="signout"><i class="fa fa-power-off"></i> Logout</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- end: search & user box -->
+			</header>
+			<!-- end: header -->
+
+			<div class="inner-wrapper">
+				<!-- start: sidebar -->
+				<aside id="sidebar-left" class="sidebar-left">
+
+					<div class="sidebar-header">
+						<div class="sidebar-title">
+							Menu
+						</div>
+						<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+						</div>
+					</div>
+
+					<div class="nano">
+						<div class="nano-content">
+							<nav id="menu" class="nav-main" role="navigation">
+								<ul class="nav nav-main">
+								<li class="nav">
+								<a href="{{ url_for('video_feed') }}">
+											<i class="fa fa-instagram" aria-hidden="true"></i>
+											<span>Test Face Detection</span>
+										</a>
+									</li>
+									<li class="nav">
+										<a href="{{ url_for('capsend') }}">
+											<i class="fa fa-camera" aria-hidden="true"></i>
+											<span>Capture Facial Images</span>
+										</a>
+									</li>
+									<li class="nav">
+										<a href="{{ url_for('reloader') }}">
+											<i class="fa fa-refresh" aria-hidden="true"></i>
+											<span>Reload</span>
+										</a>
+									</li>
+									<li class="nav">
+										<div class="row">
+										  <form action="/process" method="post">
+										  <button id ="mymenbutt" type="submit" class="btn btn-primary col-md-offset-1 col-xs-offset-1"><i class="fa fa-bolt" aria-hidden="true"></i>
+											<span>Process</span></button>
+										  </form>
+										</div>
+									</li>
+								</ul>
+							</nav>
+
+							<hr class="separator" />
+						</div>
+
+					</div>
+
+				</aside>
+				<!-- end: sidebar -->
+
+				<section role="main" class="content-body">
+					<header class="page-header">
+						<h2>Dashboard</h2>
+					</header>
+					{% with messages = get_flashed_messages() %}
+						{% if messages %}
+							<div class="row">
+					      	<div class="alert alert-success">
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					        	<strong>NOTIFICATION!</strong>
+
+										{% for message in messages %}
+					              <p>{{ message }} </p>
+										{% endfor %}
+									</div>
+					    </div>
+						{% endif %}
+					{% endwith %}
+					<div class="row">
+						<div class="col-md-12">
+							<section class="panel panel-transparent">
+								<header class="panel-heading">
+									<div class="row">
+										<div class="col-sm-8">
+											<h4 class="text text-dark">Fill in the Details</h4>
+										</div>
+									</div>
+								</header>
+								<div class="panel-body">
+									<div id="rating">
+										<div ng-controller="RatingDemoCtrl">
+											<form id="info" class="form-horizontal" ng-submit="addinfo()">
+												<div class="row">
+												</div>
+												<div class="form-group mt-lg">
+													<label class="col-sm-3 control-label">Name</label>
+													<div class="col-sm-9">
+														<input type="text" name="name" ng-model="fname" class="form-control" placeholder="Type name..." required/>
+													</div>
+												</div>
+												<div class="form-group mt-lg">
+													<label class="col-sm-3 control-label">Age</label>
+													<div class="col-sm-9">
+														<input type="text" name="name" ng-model="age" class="form-control" placeholder="Type age..." required/>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Gender</label>
+													<div class="col-sm-9">
+														<input type="text" name="email" ng-model="gender" class="form-control" placeholder="Male or Female..." required/>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Relationship</label>
+													<div class="col-sm-9">
+														<input type="text" name="email" ng-model="relationship" class="form-control" placeholder="Relationship with patient..." required/>
+													</div>
+												</div>
+												<div class="form-group mt-lg">
+													<label class="col-sm-3 control-label">Other Important Info</label>
+													<div class="col-sm-9">
+														<textarea  name="name" ng-model="otherinfo" class="form-control" placeholder="important stuffs..." required>
+														</textarea>
+													</div>
+												</div>
+												<div class="row mb-xs">
+													<div class="col-xs-8 col-xs-offset-4">
+														<button type="submit" class="btn btn-success"><i class="fa fa-send"></i><span ng-show="check">
+													</span>{a postbutton a}</button>
+														<button type="reset" class="btn btn-default">Reset</button>
+													</div>
+												</div>
+												<div ng-model= "jsuccess" name="urlink">
+													<div class="row text-center text-success" ng-if="d == '2'">
+													<i class="fa  fa-thumbs-up"></i> <span class="text text-success">{a jsuccess a} </span>
+													</div>
+											</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+				  </div>
+					<!-- end: page -->
+				</section>
+			</div>
+		</section>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+		<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+		<script>
+			//ng-app for rating
+			angular.module('rating', []);
+			angular.module('rating').config(['$interpolateProvider', function($interpolateProvider) {
+				$interpolateProvider.startSymbol('{a');
+				$interpolateProvider.endSymbol('a}');
+			}]);
+			angular.module('rating').controller('RatingDemoCtrl', function ($scope,$http,$timeout,$window) {
+
+				$http.post("/canang",{
+				inamecode: "superman"
+			})
+			.then(function(response) {
+				$scope.invites = response.data.datajson;
+			})
+
+			$scope.postbutton = "Post";
+			$scope.check = "false";
+			$scope.addinfo = function() {
+					$scope.check = "true";
+					$scope.postbutton = "Posting";
+					$http.post("/postinfo",
+				{
+					fnamedb: $scope.fname,
+					agedb: $scope.age,
+					genderdb: $scope.gender,
+					relationshipdb: $scope.relationship,
+					otherinfodb: $scope.otherinfo
+				})
+				.success(function(data, status) {
+					//$scope.clink=data;
+					if(data=='2'){
+					//green signal
+					//going to update the list http.post
+					$scope.d='2';
+					$timeout(function(){
+								$scope.check = "false";
+								$scope.postbutton = "Post";
+							}, 100);
+					$scope.jsuccess = "Information posted successfully";
+					}
+				})
+				}
+
+
+
+			});
+			//second cand controller
+			angular.module('rating').controller('CandidateCtrl', function ($scope, $http){
+
+			});
+			var rating = document.getElementById('rating');
+			angular.element(document).ready(function() {
+			angular.bootstrap(rating, ['rating']);
+			});
+		</script>
+
+		<!-- Vendor -->
+		<script src="../static/vendor/jquery/jquery.js"></script>
+		<script src="../static/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+		<script src="../static/vendor/bootstrap/js/bootstrap.js"></script>
+		<script src="../static/vendor/nanoscroller/nanoscroller.js"></script>
+		<script src="../static/vendor/magnific-popup/magnific-popup.js"></script>
+		<script src="../static/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+		<!-- Specific Page Vendor -->
+		<script src="../static/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
+		<script src="../static/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
+		<script src="../static/vendor/jquery-appear/jquery.appear.js"></script>
+		<script src="../static/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="../static/javascripts/theme.js"></script>
+
+		<!-- Theme Custom -->
+		<script src="../static/javascripts/theme.custom.js"></script>
+
+		<!-- Theme Initialization Files -->
+		<script src="../static/javascripts/theme.init.js"></script>
+
+		<!-- Examples -->
+		<script src="../static/javascripts/ui-elements/examples.lightbox.js"></script>
+
+	</body>
+</html>
